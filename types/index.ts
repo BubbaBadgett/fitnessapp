@@ -73,5 +73,3 @@ export type ProgramDay = {
   label: string;
   templateId: string | null;
 };
-
-export type Units = "lb" | "kg";
