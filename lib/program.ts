@@ -45,6 +45,53 @@ export const workoutTemplates: WorkoutTemplate[] = [
     ],
     cooldown: "10 min walk",
   },
+  // "Classic" track — same weekly slots as Strength A/B, but with more
+  // traditional barbell lifts for people without a back injury on file.
+  // Resolved dynamically by lib/plan.ts based on the training profile;
+  // never referenced directly by weeklyProgram.
+  {
+    id: "classic-strength-a",
+    name: "Classic Strength A",
+    type: "strength",
+    estimatedMinutes: 60,
+    warmup: [
+      "5 min treadmill walk (3-3.5 mph)",
+      "Cat-Camel x10",
+      "Bird Dog x8/side",
+      "Glute Bridge x10",
+      "Bodyweight Squat x10",
+    ],
+    exercises: [
+      { exerciseId: "back-squat", sets: 3, reps: "8" },
+      { exerciseId: "barbell-bench-press", sets: 3, reps: "8-10" },
+      { exerciseId: "bent-over-row", sets: 3, reps: "10" },
+      { exerciseId: "barbell-rdl", sets: 3, reps: "8" },
+      { exerciseId: "farmer-carry", sets: 4, reps: "40 yards" },
+      { exerciseId: "plank", sets: 3, reps: "30-45 sec" },
+    ],
+    cooldown: "10 min easy bike",
+  },
+  {
+    id: "classic-strength-b",
+    name: "Classic Strength B",
+    type: "strength",
+    estimatedMinutes: 55,
+    warmup: [
+      "5 min treadmill walk",
+      "Cat-Camel x10",
+      "Bird Dog x8/side",
+      "Band Pull-Apart x15",
+    ],
+    exercises: [
+      { exerciseId: "goblet-squat", sets: 3, reps: "10" },
+      { exerciseId: "lat-pulldown", sets: 3, reps: "10" },
+      { exerciseId: "overhead-press", sets: 3, reps: "8-10" },
+      { exerciseId: "seated-cable-row", sets: 3, reps: "10" },
+      { exerciseId: "split-squat", sets: 3, reps: "8/leg" },
+      { exerciseId: "pallof-press", sets: 3, reps: "12" },
+    ],
+    cooldown: "10 min walk",
+  },
   {
     id: "strength-c",
     name: "Strength C",

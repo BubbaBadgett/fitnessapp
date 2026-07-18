@@ -19,6 +19,13 @@ session, built out here as a real, working app.
 - [x] Seeded with the actual back-friendly program discussed (Strength A/B/C,
       Zone 2 cardio, mobility, long session, recovery)
 - [x] All data local-first (localStorage via Zustand `persist`) — no account needed
+- [x] Training profile intake (age, height, weight, experience, injuries, goals,
+      equipment access) that actually drives exercise selection: no back injury
+      on file switches Strength A/B to the Classic Strength (barbell) track;
+      knee/hip, shoulder, and wrist/elbow flags swap individual exercises for
+      safer alternatives on top of whichever track is active
+- [x] "Coming Up" page: rolling 7-day forward view of the personalized plan,
+      expandable per day to see the exercise list
 
 ## Milestone 2 — Make it feel alive
 

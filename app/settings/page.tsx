@@ -1,13 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { useStoresReady } from "@/hooks/useStoresReady";
 import { useSettingsStore } from "@/store/useSettingsStore";
 import { usePwaInstallStore } from "@/store/usePwaInstallStore";
+import { useProfileStore } from "@/store/useProfileStore";
 
-const STORAGE_KEYS = ["ironpath-workouts", "ironpath-weight", "ironpath-settings"];
+const EXPERIENCE_LABEL: Record<string, string> = {
+  new: "New to structured exercise",
+  some: "Some experience",
+  regular: "Trains regularly",
+  advanced: "Very experienced / athlete",
+};
+
+const STORAGE_KEYS = ["ironpath-workouts", "ironpath-weight", "ironpath-settings", "ironpath-profile"];
 
 export default function SettingsPage() {
   const ready = useStoresReady();
@@ -15,6 +24,7 @@ export default function SettingsPage() {
   const setName = useSettingsStore((s) => s.setName);
   const remindersEnabled = useSettingsStore((s) => s.remindersEnabled);
   const setRemindersEnabled = useSettingsStore((s) => s.setRemindersEnabled);
+  const profile = useProfileStore((s) => s);
 
   const deferredPrompt = usePwaInstallStore((s) => s.deferredPrompt);
   const isInstalled = usePwaInstallStore((s) => s.isInstalled);
@@ -84,6 +94,21 @@ export default function SettingsPage() {
           className="w-full rounded-xl bg-surface-raised border border-border px-3 py-2.5 text-lg focus:outline-none focus:border-accent-strong"
         />
       </Card>
+
+      <Link href="/settings/profile">
+        <Card className="flex flex-col gap-1">
+          <p className="font-semibold">Training Profile</p>
+          {profile.completedIntake ? (
+            <p className="text-sm text-muted">
+              {profile.injuries.includes("back") ? "Back-Friendly Strength" : "Classic Strength"}
+              {profile.age ? ` · Age ${profile.age}` : ""}
+              {profile.experience ? ` · ${EXPERIENCE_LABEL[profile.experience]}` : ""}
+            </p>
+          ) : (
+            <p className="text-sm text-accent-strong">Set up your profile to personalize your plan →</p>
+          )}
+        </Card>
+      </Link>
 
       {!isInstalled && deferredPrompt && (
         <Card className="flex flex-col gap-2">

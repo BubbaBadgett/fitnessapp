@@ -11,7 +11,8 @@ import { useStoresReady } from "@/hooks/useStoresReady";
 import { useWorkoutStore } from "@/store/useWorkoutStore";
 import { useWeightStore } from "@/store/useWeightStore";
 import { useSettingsStore } from "@/store/useSettingsStore";
-import { getTodaysTemplate } from "@/lib/program";
+import { useProfileStore } from "@/store/useProfileStore";
+import { getTemplateForDate } from "@/lib/plan";
 import { getWeekDates, greeting, toDateKey } from "@/lib/date";
 import { currentStreak, weekSummary } from "@/lib/stats";
 
@@ -25,10 +26,11 @@ export default function DashboardPage() {
   const weightEntries = useWeightStore((s) => s.entries);
   const rollingAverage = useWeightStore((s) => s.rollingAverage);
   const trend = useWeightStore((s) => s.trend);
+  const profile = useProfileStore((s) => s);
 
   const today = useMemo(() => new Date(), []);
   const todayKey = toDateKey(today);
-  const template = getTodaysTemplate(today);
+  const template = getTemplateForDate(today, profile);
 
   const todaysWorkout = template
     ? workouts.find((w) => w.date === todayKey && w.templateId === template.id) ?? null
@@ -125,6 +127,9 @@ export default function DashboardPage() {
           </span>
         </div>
         <WeekStrip days={weekDays} />
+        <Link href="/plan" className="text-sm text-accent-strong">
+          See coming up →
+        </Link>
       </Card>
 
       <Card className="flex items-center justify-between">
