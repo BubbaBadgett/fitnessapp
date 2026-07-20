@@ -8,15 +8,17 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { ExerciseLogCard } from "@/components/ExerciseLogCard";
 import { useStoresReady } from "@/hooks/useStoresReady";
 import { useWorkoutStore } from "@/store/useWorkoutStore";
-import { getTodaysTemplate } from "@/lib/program";
+import { useProfileStore } from "@/store/useProfileStore";
+import { getTemplateForDate } from "@/lib/plan";
 import { toDateKey } from "@/lib/date";
 
 export default function WorkoutPage() {
   const ready = useStoresReady();
   const router = useRouter();
+  const profile = useProfileStore((s) => s);
   const today = useMemo(() => new Date(), []);
   const todayKey = toDateKey(today);
-  const template = getTodaysTemplate(today);
+  const template = getTemplateForDate(today, profile);
 
   const startOrResumeWorkout = useWorkoutStore((s) => s.startOrResumeWorkout);
   const workouts = useWorkoutStore((s) => s.workouts);
@@ -36,7 +38,10 @@ export default function WorkoutPage() {
   useEffect(() => {
     if (!ready || !template || workout) return;
     startOrResumeWorkout(template);
-  }, [ready, template, workout, startOrResumeWorkout]);
+    // template is a freshly-resolved object each render (personalized from
+    // profile), so key the effect on its stable id instead of its identity.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, template?.id, workout, startOrResumeWorkout]);
 
   if (!ready || (template && !workout)) {
     return <div className="animate-pulse text-muted">Loading workout…</div>;

@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         style={{
           width: "100%",
           height: "100%",
-          background: "#05070d",
+          background: "#0a0a0f",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "#34d399",
+            color: "#00ffff",
             fontSize: dimension * 0.4,
             fontWeight: 800,
             fontFamily: "sans-serif",

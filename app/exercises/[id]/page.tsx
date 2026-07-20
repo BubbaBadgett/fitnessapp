@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/Card";
+import { ExerciseHistory } from "@/components/ExerciseHistory";
 import { exercises, getExerciseById } from "@/lib/exercises";
 
 export function generateStaticParams() {
@@ -36,6 +37,8 @@ export default async function ExerciseDetailPage({ params }: { params: Promise<{
       >
         ▶ Search for a demo video
       </a>
+
+      <ExerciseHistory exerciseId={exercise.id} />
 
       <Card>
         <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted">Muscles Worked</p>

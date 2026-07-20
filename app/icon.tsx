@@ -10,13 +10,13 @@ export default function Icon() {
         style={{
           width: "100%",
           height: "100%",
-          background: "#05070d",
+          background: "#0a0a0f",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <div style={{ color: "#34d399", fontSize: 17, fontWeight: 700, fontFamily: "sans-serif" }}>IP</div>
+        <div style={{ color: "#00ffff", fontSize: 17, fontWeight: 700, fontFamily: "sans-serif" }}>IP</div>
       </div>
     ),
     size

@@ -22,7 +22,7 @@ export function Checkbox({
         <svg viewBox="0 0 24 24" fill="none" className="h-4/5 w-4/5">
           <path
             d="M5 13l4 4L19 7"
-            stroke="#05070d"
+            stroke="#0a0a0f"
             strokeWidth={3}
             strokeLinecap="round"
             strokeLinejoin="round"

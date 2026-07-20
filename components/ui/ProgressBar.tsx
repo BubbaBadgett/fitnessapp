@@ -4,7 +4,7 @@ export function ProgressBar({ value, className = "" }: { value: number; classNam
     <div className={`h-2.5 w-full rounded-full bg-surface-raised overflow-hidden ${className}`}>
       <div
         className="h-full rounded-full bg-accent-strong transition-all duration-300"
-        style={{ width: `${pct}%` }}
+        style={{ width: `${pct}%`, boxShadow: "var(--shadow-glow-cyan)" }}
       />
     </div>
   );

@@ -1,16 +1,31 @@
 @import "tailwindcss";
 
+/*==================================================
+  Early 2000s Dark Mode Brand — Windows XP / Y2K
+==================================================*/
 :root {
-  --background: #05070d;
-  --surface: #11141d;
-  --surface-raised: #171b27;
-  --border: #262b3a;
-  --foreground: #f4f5f7;
-  --muted: #8b90a0;
-  --accent: #6ee7b7;
-  --accent-strong: #34d399;
-  --warn: #fbbf24;
-  --danger: #f87171;
+  --background: #0a0a0f;
+  --surface: #14141f;
+  --surface-raised: #1e1e2a;
+  --border: #2a2a3a;
+  --foreground: #e0e0ff;
+  --muted: #a0a0c0;
+  --accent: #00ff66; /* electric green */
+  --accent-strong: #00ffff; /* neon cyan */
+  --accent-alt: #ff00ff; /* magenta glow */
+  --warn: #ffcc00;
+  --danger: #ff4d6d;
+
+  --gradient-glossy-blue: linear-gradient(180deg, #3a9bff 0%, #0055cc 100%);
+  --gradient-glossy-purple: linear-gradient(180deg, #b066ff 0%, #5a00cc 100%);
+  --gradient-glossy-green: linear-gradient(180deg, #00ffcc 0%, #009966 100%);
+  --gradient-bg-dark: linear-gradient(180deg, #0a0a0f 0%, #14141f 100%);
+
+  --shadow-glow-cyan: 0 0 10px rgba(0, 255, 255, 0.55), 0 0 22px rgba(0, 255, 255, 0.25);
+  --shadow-glow-magenta: 0 0 10px rgba(255, 0, 255, 0.55), 0 0 22px rgba(255, 0, 255, 0.22);
+  --shadow-glow-green: 0 0 10px rgba(0, 255, 102, 0.5), 0 0 20px rgba(0, 255, 102, 0.2);
+  --shadow-glow-danger: 0 0 10px rgba(255, 77, 109, 0.5), 0 0 20px rgba(255, 77, 109, 0.2);
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.45);
 }
 
 @theme inline {
@@ -22,10 +37,11 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
+  --color-accent-alt: var(--accent-alt);
   --color-warn: var(--warn);
   --color-danger: var(--danger);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Segoe UI", Verdana, Tahoma, sans-serif;
+  --font-mono: "Courier New", monospace;
 }
 
 * {
@@ -37,10 +53,15 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: var(--gradient-bg-dark);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   overscroll-behavior-y: none;
+}
+
+h1, h2, h3, h4 {
+  color: var(--accent-strong);
+  text-shadow: var(--shadow-glow-cyan);
 }
 
 input[type="number"]::-webkit-outer-spin-button,
