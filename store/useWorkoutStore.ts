@@ -37,6 +37,8 @@ type WorkoutState = {
 
   getWorkout: (id: string) => WorkoutLog | undefined;
   getLastPerformance: (exerciseId: string, beforeWorkoutId?: string) => SetLog[] | null;
+  getExerciseHistory: (exerciseId: string, limit?: number) => { date: string; sets: SetLog[] }[];
+  getPersonalBest: (exerciseId: string) => SetLog | null;
 };
 
 export const useWorkoutStore = create<WorkoutState>()(
@@ -157,6 +159,34 @@ export const useWorkoutStore = create<WorkoutState>()(
           .sort((a, b) => (a.startedAt < b.startedAt ? 1 : -1));
         const match = candidates[0]?.exercises.find((e) => e.exerciseId === exerciseId);
         return match ? match.sets : null;
+      },
+
+      getExerciseHistory: (exerciseId, limit = 6) => {
+        return get()
+          .workouts.filter((w) => w.completedAt && w.exercises.some((e) => e.exerciseId === exerciseId))
+          .sort((a, b) => (a.startedAt < b.startedAt ? 1 : -1))
+          .slice(0, limit)
+          .map((w) => ({
+            date: w.date,
+            sets: w.exercises.find((e) => e.exerciseId === exerciseId)!.sets,
+          }));
+      },
+
+      getPersonalBest: (exerciseId) => {
+        let best: SetLog | null = null;
+        for (const w of get().workouts) {
+          if (!w.completedAt) continue;
+          const ex = w.exercises.find((e) => e.exerciseId === exerciseId);
+          if (!ex) continue;
+          for (const s of ex.sets) {
+            if (s.weight == null) continue;
+            const bestWeight = best?.weight ?? -Infinity;
+            if (s.weight > bestWeight || (s.weight === bestWeight && (s.reps ?? 0) > (best?.reps ?? 0))) {
+              best = s;
+            }
+          }
+        }
+        return best;
       },
     }),
     {
