@@ -62,18 +62,18 @@ export default function ProgressPage() {
         <div className="h-44 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={weightChartData} margin={{ top: 5, right: 8, left: 0, bottom: 0 }}>
-              <CartesianGrid stroke="#262b3a" vertical={false} />
-              <XAxis dataKey="label" tick={{ fill: "#8b90a0", fontSize: 10 }} interval={17} axisLine={false} tickLine={false} />
+              <CartesianGrid stroke="var(--border)" vertical={false} />
+              <XAxis dataKey="label" tick={{ fill: "var(--muted)", fontSize: 10 }} interval={17} axisLine={false} tickLine={false} />
               <YAxis
                 domain={["dataMin - 3", "dataMax + 3"]}
-                tick={{ fill: "#8b90a0", fontSize: 10 }}
+                tick={{ fill: "var(--muted)", fontSize: 10 }}
                 axisLine={false}
                 tickLine={false}
                 width={44}
                 tickFormatter={(v: number) => v.toFixed(0)}
               />
-              <Tooltip contentStyle={{ background: "#171b27", border: "1px solid #262b3a", borderRadius: 12 }} labelStyle={{ color: "#8b90a0" }} />
-              <Line type="monotone" dataKey="average" stroke="#34d399" strokeWidth={2.5} dot={false} connectNulls />
+              <Tooltip contentStyle={{ background: "var(--surface-raised)", border: "1px solid var(--border)", borderRadius: 12 }} labelStyle={{ color: "var(--muted)" }} />
+              <Line type="monotone" dataKey="average" stroke="var(--accent-strong)" strokeWidth={2.5} dot={false} connectNulls />
             </LineChart>
           </ResponsiveContainer>
         </div>

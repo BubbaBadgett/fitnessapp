@@ -12,7 +12,12 @@ type NavItem = {
 
 function strokeIcon(path: string, active: boolean) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="h-6 w-6"
+      style={active ? { filter: "drop-shadow(0 0 4px var(--accent-strong))" } : undefined}
+    >
       <path
         d={path}
         stroke={active ? "var(--accent-strong)" : "var(--muted)"}

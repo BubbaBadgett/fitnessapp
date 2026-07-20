@@ -96,8 +96,8 @@ export default function SettingsPage() {
       </Card>
 
       <Link href="/settings/profile">
-        <Card className="flex flex-col gap-1">
-          <p className="font-semibold">Training Profile</p>
+        <Card className="flex flex-col gap-1 border-2 border-accent-alt shadow-[var(--shadow-glow-magenta)]">
+          <p className="font-semibold text-foreground">Training Profile</p>
           {profile.completedIntake ? (
             <p className="text-sm text-muted">
               {profile.injuries.includes("back") ? "Back-Friendly Strength" : "Classic Strength"}

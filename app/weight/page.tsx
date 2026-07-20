@@ -105,30 +105,30 @@ export default function WeightPage() {
         <div className="h-52 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData} margin={{ top: 5, right: 8, left: 0, bottom: 0 }}>
-              <CartesianGrid stroke="#262b3a" vertical={false} />
+              <CartesianGrid stroke="var(--border)" vertical={false} />
               <XAxis
                 dataKey="label"
-                tick={{ fill: "#8b90a0", fontSize: 10 }}
+                tick={{ fill: "var(--muted)", fontSize: 10 }}
                 interval={6}
                 axisLine={false}
                 tickLine={false}
               />
               <YAxis
                 domain={["dataMin - 3", "dataMax + 3"]}
-                tick={{ fill: "#8b90a0", fontSize: 10 }}
+                tick={{ fill: "var(--muted)", fontSize: 10 }}
                 axisLine={false}
                 tickLine={false}
                 width={44}
                 tickFormatter={(v: number) => v.toFixed(0)}
               />
               <Tooltip
-                contentStyle={{ background: "#171b27", border: "1px solid #262b3a", borderRadius: 12 }}
-                labelStyle={{ color: "#8b90a0" }}
+                contentStyle={{ background: "var(--surface-raised)", border: "1px solid var(--border)", borderRadius: 12 }}
+                labelStyle={{ color: "var(--muted)" }}
               />
               <Line
                 type="monotone"
                 dataKey="weight"
-                stroke="#8b90a0"
+                stroke="var(--muted)"
                 strokeWidth={1.5}
                 dot={false}
                 connectNulls
@@ -136,7 +136,7 @@ export default function WeightPage() {
               <Line
                 type="monotone"
                 dataKey="average"
-                stroke="#34d399"
+                stroke="var(--accent-strong)"
                 strokeWidth={2.5}
                 dot={false}
                 connectNulls

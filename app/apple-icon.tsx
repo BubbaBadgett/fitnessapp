@@ -10,13 +10,13 @@ export default function AppleIcon() {
         style={{
           width: "100%",
           height: "100%",
-          background: "linear-gradient(160deg, #11141d 0%, #05070d 100%)",
+          background: "linear-gradient(160deg, #14141f 0%, #0a0a0f 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <div style={{ color: "#34d399", fontSize: 82, fontWeight: 800, fontFamily: "sans-serif" }}>IP</div>
+        <div style={{ color: "#00ffff", fontSize: 82, fontWeight: 800, fontFamily: "sans-serif" }}>IP</div>
       </div>
     ),
     size
